@@ -26,6 +26,12 @@
                   vino  grafito
 
    -----------------------------------------------------
+   LOS 2 TEMAS DORADOS (agregados despues)
+   -----------------------------------------------------
+                  dorado       claro, para que la gente la vea
+                  dorado-oscuro  negro suave, no todo negro
+
+   -----------------------------------------------------
    COMO CREAR UN TEMA NUEVO
    -----------------------------------------------------
    Copia un bloque de abajo, cambialo de nombre y ponele otros
@@ -300,6 +306,32 @@
   --color-borde:      #eee6c8;
   --tono-sombra:      130 110 20;
   --intensidad-sombra-base: .12;
+}
+
+[data-tema="dorado"] {
+  --color-primario:   #b8892b;
+  --color-primario-oscuro: #8f6a1c;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fdfbf6;
+  --color-superficie: #ffffff;
+  --color-texto:      #191510;
+  --color-texto-suave:#7d7264;
+  --color-borde:      #ece4d2;
+  --tono-sombra:      40 30 10;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="dorado-oscuro"] {
+  --color-primario:   #e0b155;
+  --color-primario-oscuro: #b8892b;
+  --texto-boton:      #14120d;
+  --color-fondo:      #1a1610;
+  --color-superficie: #241f16;
+  --color-texto:      #f3eee2;
+  --color-texto-suave:#a79c88;
+  --color-borde:      #3a3325;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .45;
 }
 
 
