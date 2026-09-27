@@ -191,34 +191,83 @@ function contadores() {
 /* =========================================================
    6. FORMULARIOS
    ---------------------------------------------------------
-   ASI COMO ESTA, EL FORMULARIO NO MANDA CORREOS DE VERDAD.
-   Solo muestra un aviso. Para que le lleguen al cliente hay
-   que conectarlo a un servicio gratuito (Formspree, Netlify).
-   Eso se configura en UN SOLO LUGAR, al final de este archivo.
+   EL FORMULARIO ABRE EL CORREO DEL VISITANTE CON EL MENSAJE
+   YA ESCRITO. No hay servidor ni cadastro: al darle enviar
+   se abre su programa de correo y solo tiene que darle
+   "enviar". Asi el mensaje llega de verdad al correo que
+   tenga puesto la pagina.
+
+   Para cambiar a quien le llega, se cambia el atributo
+   data-correo del <form>:
 
    EN EL HTML:
-       <form class="formulario" data-formulario>
-         <label>Nombre <input name="nombre" required></label>
-         <button class="boton" type="submit">Enviar</button>
-         <p class="aviso" data-aviso>Gracias</p>
+       <form class="formulario" data-formulario
+             data-correo="tucorreo@tucorreo.com"
+             data-asunto="Mensaje desde la pagina web">
+         <input name="nombre" placeholder="Tu nombre" required>
+         <input name="correo" type="email" placeholder="Tu correo" required>
+         <textarea name="mensaje" placeholder="Escribi aqui" required></textarea>
+         <button class="boton" type="submit">Enviar mensaje</button>
+         <p class="aviso" data-aviso></p>
        </form>
+
+   OPCIONAL, para poner un nombre lindo a cada campo:
+
+         <input name="nombre" data-etiqueta="Nombre">
+
+   Si un dia se quiere mandar sin abrir el correo del
+   visitante, se conecta Formspree (gratis) y se le pone
+   action y method ahi. Ver el bloque del final del archivo.
    ========================================================= */
 function formularios() {
   document.querySelectorAll('[data-formulario]').forEach(function (formulario) {
+    var aviso = formulario.querySelector('[data-aviso]');
+
     formulario.addEventListener('submit', function (evento) {
       evento.preventDefault();
 
-      var aviso = formulario.querySelector('[data-aviso]');
+      var destino = formulario.getAttribute('data-correo');
+      if (!destino) { return; }
+
+      var asunto = formulario.getAttribute('data-asunto') || 'Mensaje desde la pagina web';
+
+      var cuerpo = '';
+      var faltan = [];
+
+      formulario.querySelectorAll('input, textarea, select').forEach(function (campo) {
+        if (!campo.name) { return; }
+        var valor = (campo.value || '').trim();
+        if (!valor) {
+          if (campo.required) {
+            faltan.push(campo.getAttribute('data-etiqueta') || campo.name);
+          }
+          return;
+        }
+        var etiqueta = campo.getAttribute('data-etiqueta') || campo.name;
+        cuerpo += etiqueta + ': ' + valor + '\n';
+      });
+
+      if (faltan.length) {
+        if (aviso) {
+          aviso.textContent = 'Falta completar: ' + faltan.join(', ') + '.';
+          aviso.classList.add('visible');
+        }
+        return;
+      }
+
+      cuerpo += '\n---\nEnviado desde: ' + window.location.href;
+
+      var enlace = 'mailto:' + destino +
+                   '?subject=' + encodeURIComponent(asunto) +
+                   '&body=' + encodeURIComponent(cuerpo);
+
       if (aviso) {
+        aviso.textContent = 'Te abrimos tu programa de correo con el mensaje escrito. Solo falta darle enviar.';
         aviso.classList.add('visible');
-        aviso.textContent = 'Gracias. Tu mensaje fue enviado, te contestamos en menos de 24 horas.';
+        setTimeout(function () { aviso.classList.remove('visible'); }, 12000);
       }
 
-      formulario.reset();
-
-      if (aviso) {
-        setTimeout(function () { aviso.classList.remove('visible'); }, 7000);
-      }
+      window.location.href = enlace;
     });
   });
 }
