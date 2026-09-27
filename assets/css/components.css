@@ -447,25 +447,27 @@
 
 /* Boton para cerrar el menu del celular.
    Sin esto, en el telefono se abria el menu y no habia forma
-   clara de volver: la rayita se transformaba en una X muy
-   pequena y arriba de todo. Este boton es grande y obvio. */
+   clara de volver. Es una flechita chica en la esquina de
+   arriba a la derecha, no un boton que ocupa toda la pantalla. */
 .cerrar-menu { display: none; }
 
 .enlaces.activo .cerrar-menu {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: .6rem;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.05rem 1.6rem;
+  position: absolute;
+  top: .9rem;
+  right: var(--espaciado-medio);
+  width: 46px;
+  height: 46px;
+  padding: 0;
   font-family: var(--fuente-texto);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1;
   color: var(--color-primario);
-  background: none;
+  background-color: var(--color-superficie);
   border: 2px solid var(--color-primario);
-  border-radius: var(--borde-radio);
+  border-radius: 50%;
   cursor: pointer;
 }
 .enlaces.activo .cerrar-menu:hover {

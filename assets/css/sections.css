@@ -69,6 +69,14 @@
 @media (max-width: 860px) {
   .portada-b .contenedor { grid-template-columns: 1fr; }
   .portada-b .imagen { order: 0; margin-top: var(--espaciado-grande); }
+
+  /* En el celular la foto se come media pantalla y empuja el
+     titulo hacia abajo. Se achica a una franja para que el
+     texto se vea primero. */
+  .portada-b .imagen img {
+    height: 210px;
+    object-fit: cover;
+  }
 }
 
 /* --- Variante C: foto de fondo, texto encima --- */
