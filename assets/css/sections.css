@@ -68,7 +68,7 @@
 
 @media (max-width: 860px) {
   .portada-b .contenedor { grid-template-columns: 1fr; }
-  .portada-b .imagen { order: -1; }
+  .portada-b .imagen { order: 0; margin-top: var(--espaciado-grande); }
 }
 
 /* --- Variante C: foto de fondo, texto encima --- */

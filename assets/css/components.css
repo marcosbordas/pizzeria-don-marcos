@@ -445,6 +445,34 @@
 .enlaces.activo .boton-oscuro,
 .enlaces.activo .boton-claro { color: var(--color-primario); border-color: var(--color-primario); }
 
+/* Boton para cerrar el menu del celular.
+   Sin esto, en el telefono se abria el menu y no habia forma
+   clara de volver: la rayita se transformaba en una X muy
+   pequena y arriba de todo. Este boton es grande y obvio. */
+.cerrar-menu { display: none; }
+
+.enlaces.activo .cerrar-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.05rem 1.6rem;
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  background: none;
+  border: 2px solid var(--color-primario);
+  border-radius: var(--borde-radio);
+  cursor: pointer;
+}
+.enlaces.activo .cerrar-menu:hover {
+  color: var(--texto-boton);
+  background-color: var(--color-primario);
+}
+
 @keyframes entrar-menu {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: none; }

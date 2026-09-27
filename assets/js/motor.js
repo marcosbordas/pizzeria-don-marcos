@@ -44,28 +44,41 @@ document.addEventListener('DOMContentLoaded', function () {
 function menuCelular() {
   var boton   = document.querySelector('.boton-menu');
   var enlaces = document.querySelector('.enlaces');
+  var cerrar  = document.querySelector('.cerrar-menu');
 
   if (!boton || !enlaces) return;
 
+  function abrirMenu() {
+    enlaces.classList.add('activo');
+    boton.setAttribute('aria-label', 'Cerrar menu');
+    boton.textContent = '\u00D7';
+  }
+
+  function cerrarMenu() {
+    enlaces.classList.remove('activo');
+    boton.setAttribute('aria-label', 'Abrir menu');
+    boton.textContent = '\u2630';
+  }
+
   boton.addEventListener('click', function () {
-    var abierto = enlaces.classList.toggle('activo');
-    boton.setAttribute('aria-label', abierto ? 'Cerrar menu' : 'Abrir menu');
-    boton.textContent = abierto ? '\u00D7' : '\u2630';
+    if (enlaces.classList.contains('activo')) { cerrarMenu(); } else { abrirMenu(); }
   });
 
+  /* El boton grande de "volver" que esta al final del menu. */
+  if (cerrar) { cerrar.addEventListener('click', cerrarMenu); }
+
+  /* Tocar cualquier enlace del menu lo cierra solo. */
   enlaces.querySelectorAll('a').forEach(function (enlace) {
-    enlace.addEventListener('click', function () {
-      enlaces.classList.remove('activo');
-      boton.setAttribute('aria-label', 'Abrir menu');
-      boton.textContent = '\u2630';
-    });
+    enlace.addEventListener('click', cerrarMenu);
+  });
+
+  /* Con la tecla Escape tambien se cierra. */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { cerrarMenu(); }
   });
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 860) {
-      enlaces.classList.remove('activo');
-      boton.textContent = '\u2630';
-    }
+    if (window.innerWidth > 860) { cerrarMenu(); }
   });
 }
 
