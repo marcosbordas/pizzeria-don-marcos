@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="apetito" data-fuentes="impacto" data-forma="recta" data-sombra="si" data-ancho="normal">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizzería Don Marcos — Pizza en La Habana</title>
+<meta name="description" content="Pizzería Don Marcos. Masa hecha a mano, ingredientes frescos y entrega a domicilio. Pide por WhatsApp y armamos el pedido por ti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<!-- EL ORDEN IMPORTA: fonts, despues base, y temas al final. -->
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/temas.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+</head>
+<body>
+
+<!-- ============================================================
+     BARRA DE ANUNCIO
+     ============================================================ -->
+<div class="anuncio">
+  <p>Delivery gratis en pedidos de $150 o m&aacute;s &middot; <a href="#pedir">Armar mi pedido</a></p>
+  <button class="cerrar-anuncio" aria-label="Cerrar">&times;</button>
+</div>
+
+<header class="menu">
+  <div class="contenedor menu-interior">
+    <a class="marca" href="#">Pizzería Don Marcos</a>
+    <nav class="enlaces">
+      <a href="#menu">Menú</a>
+      <a href="#pizzas">Pizzas</a>
+      <a href="#info">Info</a>
+      <a href="#pedir">Pedir</a>
+    </nav>
+    <button class="boton-menu" aria-label="Abrir menu">&#9776;</button>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     1. PORTADA CON FOTO DE FONDO
+     El velo oscuro automatico hace que el texto se lea siempre.
+     ============================================================ -->
+<section class="portada portada-c">
+  <img class="fondo" src="https://picsum.photos/seed/pizzeriafondo/1600/900" alt="">
+  <div class="contenedor">
+    <span class="etiqueta">La Habana &middot; Delivery todos los d&iacute;as</span>
+    <h1>Pizza de verdad, no de[frozen]</h1>
+    <p class="entradilla">Masa hecha a mano cada mañana, mozzarella de verdad y el tomate que se hace en la esquina de la cuadra. Pedí por WhatsApp y te la llevamos caliente.</p>
+    <div class="grupo-botones">
+      <a href="#pizzas" class="boton boton-claro">Ver las pizzas</a>
+      <a href="#pedir" class="boton boton-claro">Pedir ahora</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     2. FRANJA DE CONFIANZA
+     ============================================================ -->
+<section class="confianza">
+  <div class="contenedor">
+    <div class="rejilla-4">
+      <div class="dato"><div class="cifra">18</div><div class="rotulo">A&ntilde;os en el barrio</div></div>
+      <div class="dato"><div class="cifra">45</div><div class="rotulo">Minutos de entrega</div></div>
+      <div class="dato"><div class="cifra">100%</div><div class="rotulo">Masa propia</div></div>
+      <div class="dato"><div class="cifra">12</div><div class="rotulo">Pizzas en la carta</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     3. MENU
+     Entradas y bebidas. Esto es lo que se lee, no se pide desde
+     aca: las pizzas de abajo si se piden.
+     ============================================================ -->
+<section class="seccion seccion-alterna" id="menu">
+  <div class="contenedor">
+    <div class="cabeza centrado" style="max-width:640px;margin:0 auto 2.2rem">
+      <span class="etiqueta">Nuestra carta</span>
+      <h2>Men&uacute;</h2>
+      <p class="entradilla">Entradas para empezar y bebidas fr&iacute;as para bajarse la pizza.</p>
+    </div>
+
+    <div class="menu-comida">
+      <div class="categoria-menu">
+        <h3>Entradas</h3>
+        <article class="plato">
+          <img class="foto" src="https://picsum.photos/seed/pan/300/300" alt="">
+          <div class="info"><h4>Pan de ajo</h4><p>Masa frita con ajo, mantequilla y or&eacute;gano.</p></div>
+          <div class="precio-plato">$4</div>
+        </article>
+        <article class="plato">
+          <img class="foto" src="https://picsum.photos/seed/ensalada/300/300" alt="">
+          <div class="info"><h4>Ensalada de temporada</h4><p>Hojas verdes, tomate, aguacate y lim&oacute;n.</p></div>
+          <div class="precio-plato">$5</div>
+        </article>
+        <article class="plato">
+          <img class="foto" src="https://picsum.photos/seed/papas/300/300" alt="">
+          <div class="info"><h4>Papas con queso</h4><p>Con cheddar fundido y cebollita.</p></div>
+          <div class="precio-plato">$4</div>
+        </article>
+        <article class="plato plato-sin-foto">
+          <div class="info"><h4>Palomitas de ma&iacute;z</h4><p>Con mantequilla y sal. Chicas o grandes.</p></div>
+          <div class="precio-plato">$2</div>
+        </article>
+      </div>
+
+      <div class="categoria-menu">
+        <h3>Bebidas</h3>
+        <article class="plato plato-sin-foto">
+          <div class="info"><h4>Agua de coco</h4><p>Natural, 500 ml. La mejor con la pizza.</p></div>
+          <div class="precio-plato">$1</div>
+        </article>
+        <article class="plato plato-sin-foto">
+          <div class="info"><h4>Coca de vaso</h4><p>Coca, Pepsi o Sprite, con hielo.</p></div>
+          <div class="precio-plato">$2</div>
+        </article>
+        <article class="plato plato-sin-foto">
+          <div class="info"><h4>Cerveza</h4><p>Presidente, lager o pi&ntilde;a. Fr&iacute;a.</p></div>
+          <div class="precio-plato">$2</div>
+        </article>
+        <article class="plato plato-sin-foto">
+          <div class="info"><h4>Mojito de menta</h4><p>Sin ron. Con menta fresca y lima.</p></div>
+          <div class="precio-plato">$3</div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     4. PIZZAS  (esta se pide)
+     Cada boton "Agregar" suma al pedido. Abajo a la izquierda
+     aparece el boton que lo manda a WhatsApp.
+     ============================================================ -->
+<section class="seccion" id="pizzas">
+  <div class="contenedor">
+    <div class="cabeza centrado" style="max-width:640px;margin:0 auto 2rem">
+      <span class="etiqueta">Toc&aacute; Agregar</span>
+      <h2>Nuestras pizzas</h2>
+      <p class="entradilla">Eleg&iacute; las que quieras y armamos el pedido por ti. Te llega el total y la direcci&oacute;n.</p>
+    </div>
+
+    <div class="catalogo catalogo-3">
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza1/400/400" alt="Pizza pepperoni">
+          <span class="marcador etiqueta-color">M&aacute;s pedida</span>
+        </div>
+        <div class="info">
+          <span class="nombre">Pepperoni</span>
+          <span class="detalle">Salsa de tomate, mozzarella, pepperoni y oregano.</span>
+          <div class="pie">
+            <span class="precio">$8</span>
+            <button class="boton agregar" data-producto="Pizza Pepperoni" data-precio="8.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza2/400/400" alt="Pizza cuatro quesos">
+        </div>
+        <div class="info">
+          <span class="nombre">Cuatro quesos</span>
+          <span class="detalle">Mozzarella, gorgonzola, parmesano y brie.</span>
+          <div class="pie">
+            <span class="precio">$9</span>
+            <button class="boton agregar" data-producto="Pizza Cuatro Quesos" data-precio="9.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza3/400/400" alt="Pizza vegetariana">
+          <span class="marcador etiqueta-linea">Veggie</span>
+        </div>
+        <div class="info">
+          <span class="nombre">Del huerto</span>
+          <span class="detalle">Pimiento, cebolla, Champinones, aceitunas y maiz.</span>
+          <div class="pie">
+            <span class="precio">$8</span>
+            <button class="boton agregar" data-producto="Pizza Del Huerto" data-precio="8.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza4/400/400" alt="Pizza con jamon">
+        </div>
+        <div class="info">
+          <span class="nombre">Jamon y queso</span>
+          <span class="detalle">Salsa, mozzarella, jamon york y oregano.</span>
+          <div class="pie">
+            <span class="precio">$8</span>
+            <button class="boton agregar" data-producto="Pizza Jamon y Queso" data-precio="8.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza5/400/400" alt="Pizza napolitana">
+          <span class="marcador etiqueta-color">De la casa</span>
+        </div>
+        <div class="info">
+          <span class="nombre">Napolitana</span>
+          <span class="detalle">Tomate San Marzano, albahaca fresca y ajo en crudo.</span>
+          <div class="pie">
+            <span class="precio">$10</span>
+            <button class="boton agregar" data-producto="Pizza Napolitana" data-precio="10.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto">
+        <div class="imagen">
+          <img src="https://picsum.photos/seed/pizza6/400/400" alt="Pizza de la casa">
+        </div>
+        <div class="info">
+          <span class="nombre">Especial Don Marcos</span>
+          <span class="detalle">Chorizo, pimientos, cebolla morada y queso extra.</span>
+          <div class="pie">
+            <span class="precio">$10</span>
+            <button class="boton agregar" data-producto="Pizza Especial Don Marcos" data-precio="10.00">Agregar</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     5. INFO: horarios, delivery, zona
+     ============================================================ -->
+<section class="seccion seccion-alterna" id="info">
+  <div class="contenedor">
+    <div class="dos-columnas">
+      <div>
+        <span class="etiqueta">Todo lo que hay que saber</span>
+        <h2>Delivery y horarios</h2>
+        <p style="color:var(--color-texto-suave);margin-bottom:1.6rem">Trabajamos los siete d&iacute;as. Para pedidos grandes o para eventos, avisame con un d&iacute;a de anticipaci&oacute;n y te guardo el pedido.</p>
+
+        <table class="precios-tabla">
+          <thead><tr><th>D&iacute;a</th><th style="text-align:right">Horario</th></tr></thead>
+          <tbody>
+            <tr><td>Lunes a Jueves</td><td>11:00 &ndash; 22:00</td></tr>
+            <tr><td>Viernes y S&aacute;bado</td><td>11:00 &ndash; 23:30</td></tr>
+            <tr><td>Domingo</td><td>12:00 &ndash; 21:00</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:1.6rem;color:var(--color-texto-suave)">Delivery gratis en pedidos de $150 o m&aacute;s. El tiempo normal de entrega es de 45 minutos.</p>
+      </div>
+
+      <div>
+        <div class="tarjeta">
+          <h3>Zona de reparto</h3>
+          <p style="margin-bottom:1.2rem">Repartimos en Vedado, Miramar, Centro Habana y Plaza de la Revoluci&oacute;n. Si est&aacute;s fuera de la zona, igual llamame y lo vemos.</p>
+          <ul class="incluye" style="list-style:none;padding:0;margin-bottom:1.4rem">
+            <li>Pedido minimo: $15</li>
+            <li>Envio: $10 en la zona, $15 fuera</li>
+            <li>Pago contra entrega o por transferencia</li>
+            <li>Pago en efectivo, transferencia o tarjeta</li>
+          </ul>
+          <a href="https://wa.me/5355642848" target="_blank" rel="noopener" class="boton boton-pill">Consultar mi zona</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     6. PEDIR
+     El boton de "Pedir por WhatsApp" de abajo se arma solo con
+     lo que fuiste agregando en las pizzas.
+     ============================================================ -->
+<section class="llamado" id="pedir">
+  <div class="contenedor">
+    <h2>&iquest;Arrancamos el pedido?</h2>
+    <p class="entradilla">Agreg&aacute; las pizzas que quieras arriba y toc&aacute; el bot&oacute;n. Te llega todo armado a WhatsApp con el total.</p>
+    <a href="#pizzas" class="boton">Ir a las pizzas</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     7. MAPA
+     ============================================================ -->
+<section class="seccion-junta seccion-oscura">
+  <div class="contenedor">
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps?q=Vedado,La+Habana,Cuba&output=embed" loading="lazy" title="Ubicacion de la pizzeria"></iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     8. CONTACTO
+     ============================================================ -->
+<section class="seccion-junta contacto">
+  <div class="contenedor-estrecho">
+    <h2 class="centrado" style="margin-bottom:1.6rem">Datos</h2>
+    <div class="info-contacto">
+      <div class="fila">
+        <svg class="icono" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+        <div class="dato-texto"><strong>WhatsApp para pedidos</strong><a href="tel:+5355642848">+53 5 5642848</a></div>
+      </div>
+      <div class="fila">
+        <svg class="icono" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="dato-texto"><strong>Direcci&oacute;n</strong><span>Calle 23 entre L y M, Vedado, La Habana</span></div>
+      </div>
+      <div class="fila">
+        <svg class="icono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="dato-texto"><strong>Horario</strong><span>Todos los dias, 11:00 a 23:30</span></div>
+      </div>
+      <a href="https://wa.me/5355642848" target="_blank" rel="noopener" class="boton boton-pill">Pedir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PIE DE PAGINA
+     ============================================================ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie-columnas">
+      <div>
+        <span class="marca">Pizzer&iacute;a Don Marcos</span>
+        <p>Massa hecha a mano desde 2011. Vedado, La Habana.</p>
+      </div>
+      <div>
+        <h4>Secciones</h4>
+        <ul class="pie-lista">
+          <li><a href="#menu">Men&uacute;</a></li>
+          <li><a href="#pizzas">Pizzas</a></li>
+          <li><a href="#info">Delivery</a></li>
+          <li><a href="#pedir">Pedir</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul class="pie-lista">
+          <li><a href="https://wa.me/5355642848" target="_blank" rel="noopener">+53 5 5642848</a></li>
+          <li><span>Calle 23, Vedado</span></li>
+          <li><span>La Habana, Cuba</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="redes">
+          <a href="https://wa.me/5355642848" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.4-.2-.6.1s-.7.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.6v-.5l-1-2.3c-.2-.6-.5-.5-.6-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1a11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3ZM12 21a8.9 8.9 0 0 1-4.5-1.2l-.3-.2-3.4.9.9-3.3-.2-.3A8.9 8.9 0 1 1 12 21Zm0-20a10 10 0 0 0-8.5 15.1L2 22l6-1.6A10 10 0 1 0 12 1Z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.5 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="pie-derecha">
+      <span>(c) <span data-anio>2026</span> Pizzer&iacute;a Don Marcos. Todos los derechos reservados.</span>
+      <span>Dise&ntilde;o y desarrollo: Marcos Bordas</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BOTON FLOTANTE DE WHATSAPP
+     ============================================================ -->
+<a class="whatsapp-flotante" href="https://wa.me/5355642848" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.4-.2-.6.1s-.7.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.5.3-.6v-.5l-1-2.3c-.2-.6-.5-.5-.6-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1a11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3ZM12 21a8.9 8.9 0 0 1-4.5-1.2l-.3-.2-3.4.9.9-3.3-.2-.3A8.9 8.9 0 1 1 12 21Zm0-20a10 10 0 0 0-8.5 15.1L2 22l6-1.6A10 10 0 1 0 12 1Z"/></svg>
+  <span>Pedir</span>
+</a>
+
+<!-- ============================================================
+     CARRITO DE PEDIDOS
+     Solo aparece cuando agregaste algo. El numero de WhatsApp
+     esta en assets/js/motor.js, linea NUMERO_WHATSAPP.
+     ============================================================ -->
+<button class="carrito" data-enviar-pedido>
+  <span class="cuenta" data-cuenta>0</span> Pedir por WhatsApp
+</button>
+<div class="brindis"></div>
+
+<script src="assets/js/motor.js"></script>
+
+</body>
+</html>

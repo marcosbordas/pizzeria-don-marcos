@@ -1,0 +1,92 @@
+/* =========================================================
+   TIPOGRAFIAS
+   Las 8 parejas disponibles.
+   =========================================================
+
+   COMO USAR UNA:
+     En el HTML:  <html data-fuentes="elegante" ...>
+
+   -----------------------------------------------------
+   LAS 8 PAREJAS
+   -----------------------------------------------------
+   nombre        titulos            texto        sensacion
+   -----------------------------------------------------
+   elegante      Playfair Display   Lato         lujo, clasica
+   moderna       Montserrat         Inter        profesional
+   minimal       Outfit             Inter        limpia, actual
+   impacto       Bebas Neue         Lato         grande, con energia
+   tech          Space Grotesk      Inter        startup, moderna
+   artesana      Cormorant          Karla        delicada, boutique
+   journal       DM Serif Display   Manrope      editorial, seria
+   calida        Fraunces           Manrope      calida, artesanal
+
+   PARA ESCOGER: la primera tipografia (de titulos) es la que
+   manda. Si la pagina tiene que verse cara, usa una serif
+   (elegante, artesana, journal). Si tiene que verse moderna y
+   limpia, usa una sin serif (moderna, minimal, tech, calida).
+   Si es para algo enérgico y con mucha letra, impacto.
+   ========================================================= */
+
+/* --- elegante  ·  la clasica de las webs caras --- */
+[data-fuentes="elegante"] {
+  --fuente-titulo: "Playfair Display", Georgia, serif;
+  --fuente-texto:  "Lato", system-ui, sans-serif;
+  --peso-titulo:   700;
+  --espaciado-titulo: -0.02em;
+}
+
+/* --- moderna  ·  la mas segura, no falla con nadie --- */
+[data-fuentes="moderna"] {
+  --fuente-titulo: "Montserrat", system-ui, sans-serif;
+  --fuente-texto:  "Inter", system-ui, sans-serif;
+  --peso-titulo:   800;
+  --espaciado-titulo: -0.03em;
+}
+
+/* --- minimal  ·  limpia y con mucho aire --- */
+[data-fuentes="minimal"] {
+  --fuente-titulo: "Outfit", system-ui, sans-serif;
+  --fuente-texto:  "Inter", system-ui, sans-serif;
+  --peso-titulo:   600;
+  --espaciado-titulo: -0.03em;
+}
+
+/* --- impacto  ·  letras enormes, para que se lea de lejos --- */
+[data-fuentes="impacto"] {
+  --fuente-titulo: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --fuente-texto:  "Lato", system-ui, sans-serif;
+  --peso-titulo:   400;
+  --espaciado-titulo: 0.01em;
+}
+
+/* --- tech  ·  para agencias y cosa de tecnologia --- */
+[data-fuentes="tech"] {
+  --fuente-titulo: "Space Grotesk", system-ui, sans-serif;
+  --fuente-texto:  "Inter", system-ui, sans-serif;
+  --peso-titulo:   700;
+  --espaciado-titulo: -0.03em;
+}
+
+/* --- artesana  ·  delicada, para moda y belleza --- */
+[data-fuentes="artesana"] {
+  --fuente-titulo: "Cormorant Garamond", Georgia, serif;
+  --fuente-texto:  "Karla", system-ui, sans-serif;
+  --peso-titulo:   600;
+  --espaciado-titulo: -0.01em;
+}
+
+/* --- journal  ·  editorial, para estudios y medios --- */
+[data-fuentes="journal"] {
+  --fuente-titulo: "DM Serif Display", Georgia, serif;
+  --fuente-texto:  "Manrope", system-ui, sans-serif;
+  --peso-titulo:   400;
+  --espaciado-titulo: -0.01em;
+}
+
+/* --- calida  ·  suave, para cosas de comida y artesania --- */
+[data-fuentes="calida"] {
+  --fuente-titulo: "Fraunces", Georgia, serif;
+  --fuente-texto:  "Manrope", system-ui, sans-serif;
+  --peso-titulo:   600;
+  --espaciado-titulo: -0.02em;
+}

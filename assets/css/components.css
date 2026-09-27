@@ -1,0 +1,930 @@
+/* =========================================================
+   COMPONENTES
+   Piezas pequenas que se repiten en toda la pagina.
+   =========================================================
+   Aqui esta:
+
+     1.  Botones
+     2.  Etiquetas  (los cartelitos de "Nuevo", "Popular")
+     3.  Tarjetas
+     4.  Barra de anuncio
+     5.  Menu de navegacion
+     6.  Formularios
+     7.  Boton flotante de WhatsApp
+     8.  Logos de marcas
+     9.  Equipo
+    10.  Tabla comparativa
+    11.  Captacion de contactos
+    12.  Pie de pagina
+    13.  Rejillas
+    14.  Iconos
+    15.  Horarios y datos
+
+   Cada pieza tiene VARIANTES con las clases -a / -b / -c
+   ========================================================= */
+
+
+/* =========================================================
+   1. BOTONES
+   ---------------------------------------------------------
+     <a class="boton" href="#contacto">Escribime</a>
+
+   Formas (se pueden combinar):
+     .boton-cuadrado    esquinas rectas
+     .boton-pill        capsula
+     .boton-subrayado   solo texto con linea debajo
+     .boton-grande      el principal de la portada
+     .boton-oscuro      para fondos claros
+     .boton-claro       para bloques oscuros
+   ========================================================= */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .95rem 2rem;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--color-primario);
+  border-radius: var(--borde-radio);
+  background-color: var(--color-primario);
+  color: var(--texto-boton);
+  transition: background-color var(--transicion),
+              border-color var(--transicion),
+              transform var(--transicion),
+              box-shadow var(--transicion);
+}
+
+.boton:hover {
+  background-color: var(--color-primario-oscuro);
+  border-color: var(--color-primario-oscuro);
+  color: var(--texto-boton);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra);
+}
+
+.boton:active { transform: translateY(0); }
+
+.boton-oscuro {
+  background-color: transparent;
+  border-color: var(--color-texto);
+  color: var(--color-texto);
+}
+.boton-oscuro:hover {
+  background-color: var(--color-texto);
+  border-color: var(--color-texto);
+  color: var(--color-fondo);
+}
+
+.boton-claro {
+  background-color: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+.boton-claro:hover {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--texto-boton);
+}
+
+.boton-cuadrado { border-radius: 0; }
+.boton-pill     { border-radius: 999px; }
+
+.boton-subrayado {
+  padding-inline: .25rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0;
+  color: var(--color-primario);
+}
+.boton-subrayado:hover {
+  background: none;
+  color: var(--color-primario-oscuro);
+  box-shadow: none;
+  transform: none;
+}
+
+.boton-grande { padding: 1.15rem 2.6rem; font-size: 1.05rem; }
+
+.boton-pequeno { padding: .55rem 1.1rem; font-size: .85rem; }
+
+/* Un grupo de botones uno al lado del otro */
+.grupo-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
+
+/* Boton que ocupa todo el ancho de su columna */
+.boton-ancho { width: 100%; }
+
+
+/* =========================================================
+   2. ETIQUETAS
+     <span class="etiqueta-color">Nuevo</span>
+     <span class="etiqueta-linea">Popular</span>
+   ========================================================= */
+.etiqueta-color {
+  display: inline-block;
+  padding: .35rem .85rem;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texto-boton);
+  background-color: var(--color-primario);
+  border-radius: 999px;
+}
+
+.etiqueta-linea {
+  display: inline-block;
+  padding: .3rem .8rem;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-primario);
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+}
+
+
+/* =========================================================
+   3. TARJETAS
+   ---------------------------------------------------------
+     <article class="tarjeta">
+       <h3>Titulo</h3>
+       <p>Descripcion</p>
+     </article>
+
+   Formas:
+     .tarjeta              con borde
+     .tarjeta-sombra       con sombra, sin borde
+     .tarjeta-contorno     solo contorno
+     .tarjeta-foto         con imagen arriba
+   ========================================================= */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 2rem 1.75rem;
+  background-color: var(--color-superficie);
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta h3 { font-size: 1.25rem; }
+.tarjeta p  { color: var(--color-texto-suave); }
+
+.tarjeta-sombra {
+  border-color: transparent;
+  box-shadow: var(--sombra);
+}
+
+.tarjeta-contorno {
+  background-color: transparent;
+  border: 2px solid var(--color-borde);
+}
+
+.tarjeta-foto { padding: 0; overflow: hidden; }
+.tarjeta-foto img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.tarjeta-foto:hover img { transform: scale(1.06); }
+.tarjeta-foto .cuerpo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  flex: 1;
+}
+
+/* --- Producto del catalogo --- */
+.producto {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-superficie);
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.producto:hover { transform: translateY(-4px); box-shadow: var(--sombra); }
+
+.producto .imagen {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--color-borde);
+}
+.producto .imagen img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.producto:hover .imagen img { transform: scale(1.06); }
+.producto .marcador { position: absolute; top: .75rem; left: .75rem; }
+
+.producto .info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  flex: 1;
+}
+.producto .nombre  { font-family: var(--fuente-titulo); font-size: 1.15rem; font-weight: var(--peso-titulo); }
+.producto .detalle { font-size: .88rem; color: var(--color-texto-suave); }
+
+.producto .pie {
+  margin-top: auto;
+  padding-top: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.producto .precio {
+  font-family: var(--fuente-titulo);
+  font-size: 1.3rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-primario);
+}
+.producto .agregar { padding: .6rem 1.1rem; font-size: .85rem; }
+
+
+/* =========================================================
+   4. BARRA DE ANUNCIO
+   La franja de arriba con ofertas. Se puede cerrar.
+   ---------------------------------------------------------
+     <div class="anuncio">
+       <p>Envio gratis en +$500 <a href="#">Ver condiciones</a></p>
+       <button class="cerrar-anuncio" aria-label="Cerrar">&times;</button>
+     </div>
+   ========================================================= */
+.anuncio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: .6rem 1rem;
+  font-size: .88rem;
+  font-weight: 600;
+  text-align: center;
+  background-color: var(--color-primario);
+  color: var(--texto-boton);
+}
+.anuncio a {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+/* El tachito para cerrar el anuncio */
+.cerrar-anuncio {
+  position: absolute;
+  right: .6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .7;
+  border-radius: 50%;
+  transition: opacity var(--transicion), background-color var(--transicion);
+}
+.cerrar-anuncio:hover { opacity: 1; background-color: rgba(255,255,255,.18); }
+
+.anuncio { position: relative; padding-right: 2.6rem; }
+
+@media (max-width: 520px) {
+  .anuncio { font-size: .78rem; padding-block: .5rem; }
+}
+
+
+/* =========================================================
+   5. MENU DE NAVEGACION
+   ---------------------------------------------------------
+     <header class="menu">
+       <div class="contenedor menu-interior">
+         <a class="marca" href="#">Logo</a>
+         <nav class="enlaces">
+           <a href="#servicios">Servicios</a>
+         </nav>
+         <button class="boton-menu" aria-label="Abrir menu">&#9776;</button>
+       </div>
+     </header>
+
+   Formas:
+     .menu                   normal, se pega arriba al bajar
+     .menu-transparente      invisible arriba, solido al bajar
+   ========================================================= */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-fondo);
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+}
+
+.menu-transparente {
+  position: fixed;
+  background-color: transparent;
+  border-bottom-color: transparent;
+  color: #fff;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+.menu-transparente .marca,
+.menu-transparente .enlaces a { color: inherit; }
+.menu-transparente .marca svg { fill: currentColor; }
+
+/* Al bajar, el menu gana fondo. Lo pone motor.js. */
+.menu-transparente.pegado {
+  background-color: var(--color-fondo);
+  border-bottom-color: var(--color-borde);
+  box-shadow: 0 2px 20px rgba(0,0,0,.07);
+  color: var(--color-texto);
+}
+.menu-transparente.pegado .marca,
+.menu-transparente.pegado .enlaces a { color: var(--color-texto); }
+.menu-transparente.pegado .marca svg { fill: currentColor; }
+.menu-transparente.pegado .enlaces a:hover { color: var(--color-primario); }
+
+.menu-interior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaciado-medio);
+  min-height: var(--alto-menu);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-texto);
+  text-decoration: none;
+  letter-spacing: var(--espaciado-titulo);
+  white-space: nowrap;
+}
+.marca svg { width: 28px; height: 28px; fill: currentColor; }
+.menu-transparente .marca { color: inherit; }
+
+.enlaces {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+
+.enlaces a {
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--color-texto);
+  text-decoration: none;
+  transition: color var(--transicion);
+}
+.enlaces a:hover { color: var(--color-primario); }
+
+.menu-cta { margin-left: .5rem; padding: .6rem 1.3rem; font-size: .88rem; }
+
+/* Boton de las 3 lineas, solo en celular */
+.boton-menu {
+  display: none;
+  width: 44px; height: 44px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.enlaces.activo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: fixed;
+  inset: var(--alto-menu) 0 0 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  padding: var(--espaciado-grande) var(--espaciado-medio);
+  overflow-y: auto;
+  gap: .25rem;
+  animation: entrar-menu .2s ease;
+}
+.enlaces.activo a {
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  padding: .85rem 0;
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+}
+.enlaces.activo .boton { margin-top: 1.25rem; text-align: center; }
+.enlaces.activo .boton-oscuro,
+.enlaces.activo .boton-claro { color: var(--color-primario); border-color: var(--color-primario); }
+
+@keyframes entrar-menu {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 860px) {
+  .enlaces { display: none; }
+  .boton-menu { display: flex; }
+  .menu-cta { display: none; }
+}
+
+
+/* =========================================================
+   6. FORMULARIOS
+   ---------------------------------------------------------
+     <form class="formulario">
+       <label>Nombre
+         <input type="text" name="nombre" required>
+       </label>
+       <button class="boton" type="submit">Enviar</button>
+       <p class="aviso" data-aviso></p>
+     </form>
+
+   Para un formulario de una sola linea (el de correo):
+     <form class="formulario formulario-linea">
+       <input type="email" placeholder="tu@correo.com" required>
+       <button class="boton" type="submit">Suscribirme</button>
+     </form>
+   ========================================================= */
+.formulario { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select {
+  padding: .9rem 1.05rem;
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  transition: border-color var(--transicion), box-shadow var(--transicion);
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primario) 18%, transparent);
+}
+
+.formulario textarea { resize: vertical; min-height: 120px; }
+
+.formulario input::placeholder,
+.formulario textarea::placeholder { color: var(--color-texto-suave); opacity: .8; }
+
+.formulario-linea { flex-direction: row; gap: .6rem; flex-wrap: wrap; }
+.formulario-linea input {
+  flex: 1;
+  min-width: 220px;
+  background-color: var(--color-fondo);
+}
+
+.aviso {
+  display: none;
+  padding: 1.1rem 1.3rem;
+  font-size: .95rem;
+  font-weight: 600;
+  border-radius: var(--borde-radio);
+  border-left: 5px solid var(--color-primario);
+  background-color: color-mix(in srgb, var(--color-primario) 12%, transparent);
+}
+.aviso.visible { display: block; animation: entrar-menu .3s ease; }
+
+
+/* =========================================================
+   7. BOTON FLOTANTE DE WHATSAPP
+   ---------------------------------------------------------
+   El numero va en el href, sin + y sin espacios.
+   Cuba +53 5 5648484  ->  https://wa.me/5355648484
+   ========================================================= */
+.whatsapp-flotante {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .8rem 1.3rem .8rem .9rem;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  background-color: #25d366;
+  border-radius: 999px;
+  box-shadow: 0 6px 24px rgba(37,211,102,.45);
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+.whatsapp-flotante:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37,211,102,.6);
+}
+.whatsapp-flotante svg { width: 28px; height: 28px; fill: currentColor; flex-shrink: 0; }
+.whatsapp-flotante span { white-space: nowrap; }
+
+@media (max-width: 520px) {
+  .whatsapp-flotante { padding: .95rem; }
+  .whatsapp-flotante span { display: none; }
+}
+
+
+/* =========================================================
+   8. LOGOS DE MARCAS
+   "Confian en nosotros"
+   ---------------------------------------------------------
+     <div class="logos">
+       <img src="logo1.svg" alt="Marca 1">
+       <img src="logo2.svg" alt="Marca 2">
+     </div>
+   ========================================================= */
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem 3rem;
+}
+
+.logos img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  opacity: .55;
+  filter: grayscale(1);
+  transition: opacity var(--transicion), filter var(--transicion);
+}
+.logos img:hover { opacity: 1; filter: none; }
+
+/* En tema oscuro, los logos se ven mejor en blanco */
+.seccion-oscura .logos img { filter: grayscale(1) invert(1); opacity: .45; }
+
+
+/* =========================================================
+   9. EQUIPO
+   Las personas. Imprescindible en estudios y consultoras.
+   ---------------------------------------------------------
+     <div class="equipo">
+       <article class="persona">
+         <img src="foto.jpg" alt="">
+         <h4>Nombre</h4>
+         <span class="cargo">Cargo</span>
+         <p>Dos lineas.</p>
+       </article>
+     </div>
+   ========================================================= */
+.equipo { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--espaciado-grande); }
+.equipo-3 { grid-template-columns: repeat(3, 1fr); }
+.equipo-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 1000px) { .equipo { grid-template-columns: repeat(2, 1fr); gap: var(--espaciado-grande); } }
+@media (max-width: 560px)  { .equipo, .equipo-3, .equipo-2 { grid-template-columns: 1fr; } }
+
+.persona { text-align: center; }
+
+.persona .foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--borde-radio);
+  margin-bottom: 1.1rem;
+  filter: grayscale(1);
+  transition: filter .4s ease, transform .4s ease;
+}
+.persona:hover .foto { filter: grayscale(0); transform: translateY(-4px); }
+
+.persona .cargo {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--color-primario);
+  margin-bottom: .5rem;
+}
+.persona p { font-size: .92rem; color: var(--color-texto-suave); }
+
+
+/* =========================================================
+   10. TABLA COMPARATIVA
+   "Esto si / Esto no", o comparar dos planes lado a lado.
+   ---------------------------------------------------------
+     <table class="comparativa">
+       <thead><tr><th></th><th>Basico</th><th>Completo</th></tr></thead>
+       <tbody>
+         <tr><td>Pagina propia</td>
+             <td><svg class="tick">...</svg></td>
+             <td><svg class="tick">...</svg></td>
+         </tr>
+       </tbody>
+     </table>
+
+   Para poner la columna recomendada con color distinto:
+     <th class="recomendada">Completo</th>
+   ========================================================= */
+.comparativa {
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+  border-collapse: collapse;
+  background-color: var(--color-superficie);
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+}
+
+.comparativa th,
+.comparativa td {
+  padding: 1.1rem 1.25rem;
+  text-align: center;
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+  font-size: .95rem;
+}
+.comparativa tbody tr:last-child td,
+.comparativa tbody tr:last-child th { border-bottom: none; }
+
+.comparativa th:first-child,
+.comparativa td:first-child {
+  text-align: left;
+  color: var(--color-texto-suave);
+  font-weight: 500;
+}
+
+.comparativa thead th {
+  font-family: var(--fuente-titulo);
+  font-size: 1.15rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-texto);
+}
+
+.comparativa .recomendada {
+  background-color: color-mix(in srgb, var(--color-primario) 8%, transparent);
+  color: var(--color-primario);
+}
+
+.comparativa tbody tr:hover td { background-color: color-mix(in srgb, var(--color-primario) 5%, transparent); }
+
+/* El check verde y la equis gris */
+.comparativa .tick,
+.comparativa .cruz {
+  display: inline-block;
+  width: 22px; height: 22px;
+  vertical-align: middle;
+}
+.comparativa .tick { color: #2f9e44; }
+.comparativa .cruz { color: var(--color-texto-suave); opacity: .5; }
+
+
+/* =========================================================
+   11. CAPTACION DE CONTACTOS
+   La seccion que mas clientes te trae.
+   "Dejame tu correo y te mando el catalogo"
+   ---------------------------------------------------------
+     <div class="captura">
+       <h3>Title</h3>
+       <p>Subtitulo</p>
+       <form class="formulario formulario-linea">...</form>
+       <small class="nota">Sin spam. Te podes dar de baja cuando quieras.</small>
+     </div>
+   ========================================================= */
+.captura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .4rem;
+  padding: 2.5rem 1.75rem;
+  background-color: var(--color-superficie);
+  border: 2px dashed var(--color-borde);
+  border-radius: var(--borde-radio);
+}
+.captura h3 { margin-bottom: .3rem; }
+.captura > p { color: var(--color-texto-suave); max-width: 52ch; margin-bottom: 1.3rem; }
+.captura .formulario { width: 100%; max-width: 520px; }
+.captura .nota { font-size: .8rem; color: var(--color-texto-suave); margin-top: .9rem; }
+
+/* Variante en un bloque oscuro */
+.captura-oscura {
+  background-color: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.22);
+}
+.captura-oscura h3 { color: #fff; }
+.captura-oscura > p,
+.captura-oscura .nota { color: rgba(255,255,255,.75); }
+.captura-oscura .formulario input { background-color: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.25); }
+.captura-oscura .formulario input::placeholder { color: rgba(255,255,255,.6); }
+.seccion-oscura .captura { background-color: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
+.seccion-oscura .captura h3 { color: #fff; }
+.seccion-oscura .captura > p,
+.seccion-oscura .captura .nota { color: rgba(255,255,255,.75); }
+.seccion-oscura .captura .formulario input {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+  border-color: rgba(255,255,255,.25);
+}
+.seccion-oscura .captura .formulario input::placeholder { color: rgba(255,255,255,.6); }
+
+
+/* =========================================================
+   12. PIE DE PAGINA
+   ========================================================= */
+.pie {
+  padding-block: var(--espaciado-grande) var(--espaciado-medio);
+  background-color: var(--color-superficie);
+  border-top: var(--ancho-borde) solid var(--color-borde);
+  color: var(--color-texto-suave);
+  font-size: .93rem;
+}
+
+.pie h4 { color: var(--color-texto); font-size: 1rem; margin-bottom: 1rem; }
+.pie .marca { color: var(--color-texto); margin-bottom: .7rem; }
+
+.pie a { color: var(--color-texto-suave); text-decoration: none; }
+.pie a:hover { color: var(--color-primario); }
+
+.pie-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--espaciado-grande);
+  padding-bottom: var(--espaciado-grande);
+}
+
+.pie-lista { display: flex; flex-direction: column; gap: .6rem; }
+.pie-lista li { list-style: none; }
+
+.pie-derecha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--espaciado-medio);
+  border-top: var(--ancho-borde) solid var(--color-borde);
+  font-size: .87rem;
+}
+
+.redes { display: flex; gap: .6rem; }
+.redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: 50%;
+  transition: background-color var(--transicion), color var(--transicion);
+}
+.redes a:hover {
+  background-color: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--texto-boton);
+}
+.redes svg { width: 18px; height: 18px; fill: currentColor; }
+
+
+/* =========================================================
+   13. REJILLAS
+   ========================================================= */
+.rejilla-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--espaciado-medio); }
+.rejilla-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--espaciado-medio); }
+.rejilla-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--espaciado-medio); }
+
+.rejilla-2 > *, .rejilla-3 > *, .rejilla-4 > * { height: 100%; }
+
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espaciado-grande);
+  align-items: center;
+}
+
+.dos-columnas .imagen img { border-radius: var(--borde-radio); box-shadow: var(--sombra); }
+.dos-columnas .imagen.plana img { box-shadow: none; }
+
+@media (max-width: 860px) {
+  .rejilla-2, .rejilla-3, .rejilla-4 { grid-template-columns: 1fr; }
+  .dos-columnas { grid-template-columns: 1fr; gap: var(--espaciado-medio); }
+  .dos-columnas .imagen { order: -1; }
+  .invertir .dos-columnas .imagen { order: -1; }
+}
+
+
+/* =========================================================
+   14. ICONOS
+   Vienen de https://lucide.dev (gratis, se copian).
+   ========================================================= */
+.icono {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: var(--color-primario);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.icono-pequeno { width: 20px; height: 20px; }
+.icono-grande  { width: 46px; height: 46px; }
+.icono-blanco { stroke: #fff; }
+
+.icono-circulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px; height: 62px;
+  margin-bottom: 1.1rem;
+  background-color: color-mix(in srgb, var(--color-primario) 12%, transparent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   15. HORARIOS Y DATOS
+   ---------------------------------------------------------
+     <ul class="datos">
+       <li><span>Lunes a Viernes</span><strong>9:00 - 18:00</strong></li>
+     </ul>
+   ========================================================= */
+.datos { display: flex; flex-direction: column; }
+
+.datos li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 0;
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+  list-style: none;
+}
+.datos li:last-child { border-bottom: none; }
+.datos span   { color: var(--color-texto-suave); }
+.datos strong { color: var(--color-texto); font-weight: 700; }
+
+
+/* =========================================================
+   16. AJUSTES SOBRE FONDOS OSCUROS
+   ---------------------------------------------------------
+   Sin esto, el formulario y los datos de contacto se leen
+   mal dentro de .seccion-oscura: los labels salian en color
+   de texto (oscuro) sobre fondo oscuro.
+   ========================================================= */
+.seccion-oscura .formulario label { color: var(--color-fondo); }
+
+.seccion-oscura .formulario input,
+.seccion-oscura .formulario textarea,
+.seccion-oscura .formulario select {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+  border-color: rgba(255,255,255,.25);
+}
+.seccion-oscura .formulario input::placeholder,
+.seccion-oscura .formulario textarea::placeholder { color: rgba(255,255,255,.6); }
+
+.seccion-oscura .formulario .aviso {
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+.seccion-oscura .info-contacto .fila strong { color: var(--color-fondo); }
+.seccion-oscura .info-contacto .fila a,
+.seccion-oscura .info-contacto .fila span { color: rgba(255,255,255,.75); }
+.seccion-oscura .info-contacto .fila a:hover { color: #fff; }

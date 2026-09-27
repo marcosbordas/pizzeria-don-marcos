@@ -1,0 +1,342 @@
+/* =========================================================
+   TEMAS
+   Los 20 colores de pagina + los 3 interruptores de estilo.
+   =========================================================
+   ESTE ARCHIVO VA DESPUES DE base.css (asi lo pisa).
+
+   -----------------------------------------------------
+   LOS 3 INTERRUPTORES  (se escriben en la 1ra linea del HTML)
+   -----------------------------------------------------
+     <html data-tema="apetito" data-fuentes="impacto"
+           data-forma="recta" data-sombra="no" data-ancho="ancho">
+
+     data-tema     uno de los 20 nombres de la lista de abajo
+     data-fuentes  una de las 8 parejas (esta en fonts.css)
+     data-forma    suave | media | recta
+     data-sombra   si | no
+     data-ancho    estrecho | normal | ancho
+
+   -----------------------------------------------------
+   LOS 20 TEMAS
+   -----------------------------------------------------
+   CLAROS (13):   apetito  medico  botanico  vibrante  corporativo
+                  artesanal  minimal  ocaso  menta  cacao  rosa
+                  arena  electric
+   OSCUROS  (7):  noche  bosque  medianoche  carbon  lavanda
+                  vino  grafito
+
+   -----------------------------------------------------
+   COMO CREAR UN TEMA NUEVO
+   -----------------------------------------------------
+   Copia un bloque de abajo, cambialo de nombre y ponele otros
+   colores. No hay que tocar nada mas en ningun otro archivo.
+   ========================================================= */
+
+
+/* =========================================================
+   LOS 7 TEMAS OSCUROS
+   ========================================================= */
+
+[data-tema="noche"] {
+  --color-primario:   #d4a548;
+  --color-primario-oscuro: #a8822f;
+  --texto-boton:      #111111;
+  --color-fondo:      #0d0d0f;
+  --color-superficie: #17171a;
+  --color-texto:      #eceae6;
+  --color-texto-suave:#9a968e;
+  --color-borde:      #2a2a2f;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .55;
+}
+
+[data-tema="bosque"] {
+  --color-primario:   #7ac74f;
+  --color-primario-oscuro: #5da537;
+  --texto-boton:      #0f1a12;
+  --color-fondo:      #0f1a12;
+  --color-superficie: #16241a;
+  --color-texto:      #e8f0e4;
+  --color-texto-suave:#93a897;
+  --color-borde:      #243528;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+[data-tema="medianoche"] {
+  --color-primario:   #4cc2ff;
+  --color-primario-oscuro: #2496d4;
+  --texto-boton:      #0a1428;
+  --color-fondo:      #0a1428;
+  --color-superficie: #111f38;
+  --color-texto:      #e6eef8;
+  --color-texto-suave:#8fa3bf;
+  --color-borde:      #1c2c4a;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+[data-tema="carbon"] {
+  --color-primario:   #ff6b35;
+  --color-primario-oscuro: #d94f1c;
+  --texto-boton:      #15171a;
+  --color-fondo:      #15171a;
+  --color-superficie: #1e2126;
+  --color-texto:      #eef0f2;
+  --color-texto-suave:#9aa0a8;
+  --color-borde:      #2a2e34;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+[data-tema="lavanda"] {
+  --color-primario:   #c9a7f5;
+  --color-primario-oscuro: #a583d9;
+  --texto-boton:      #161226;
+  --color-fondo:      #161226;
+  --color-superficie: #1f1a33;
+  --color-texto:      #efe9f8;
+  --color-texto-suave:#9d93b5;
+  --color-borde:      #2c2444;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+[data-tema="vino"] {
+  --color-primario:   #c9a227;
+  --color-primario-oscuro: #a1831d;
+  --texto-boton:      #1a0f12;
+  --color-fondo:      #1a0f12;
+  --color-superficie: #241418;
+  --color-texto:      #f0e6e2;
+  --color-texto-suave:#a88b87;
+  --color-borde:      #362025;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+[data-tema="grafito"] {
+  --color-primario:   #d4e157;
+  --color-primario-oscuro: #b3c033;
+  --texto-boton:      #14161a;
+  --color-fondo:      #14161a;
+  --color-superficie: #1c1f24;
+  --color-texto:      #eceef1;
+  --color-texto-suave:#8b9099;
+  --color-borde:      #272b31;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .5;
+}
+
+
+/* =========================================================
+   LOS 13 TEMAS CLAROS
+   ========================================================= */
+
+[data-tema="apetito"] {
+  --color-primario:   #c0392b;
+  --color-primario-oscuro: #96271b;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fff8f2;
+  --color-superficie: #ffffff;
+  --color-texto:      #241a16;
+  --color-texto-suave:#7a6a62;
+  --color-borde:      #f0e2d8;
+  --tono-sombra:      122 54 32;
+  --intensidad-sombra-base: .12;
+}
+
+[data-tema="medico"] {
+  --color-primario:   #0e7c9b;
+  --color-primario-oscuro: #0a5f78;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #f4fafc;
+  --color-superficie: #ffffff;
+  --color-texto:      #16232b;
+  --color-texto-suave:#5f7480;
+  --color-borde:      #ddeaf0;
+  --tono-sombra:      14 90 110;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="botanico"] {
+  --color-primario:   #3f6b52;
+  --color-primario-oscuro: #2e513d;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #faf7f0;
+  --color-superficie: #ffffff;
+  --color-texto:      #24302a;
+  --color-texto-suave:#6b7a71;
+  --color-borde:      #e3e6da;
+  --tono-sombra:      63 80 65;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="vibrante"] {
+  --color-primario:   #6d3bd4;
+  --color-primario-oscuro: #5127ab;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fbfaff;
+  --color-superficie: #ffffff;
+  --color-texto:      #1e1630;
+  --color-texto-suave:#6b6183;
+  --color-borde:      #e8e2f7;
+  --tono-sombra:      78 40 160;
+  --intensidad-sombra-base: .14;
+}
+
+[data-tema="corporativo"] {
+  --color-primario:   #16437a;
+  --color-primario-oscuro: #0f3159;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #f5f7fa;
+  --color-superficie: #ffffff;
+  --color-texto:      #15202e;
+  --color-texto-suave:#5d6b7e;
+  --color-borde:      #dde3ec;
+  --tono-sombra:      20 50 90;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="artesanal"] {
+  --color-primario:   #b1552f;
+  --color-primario-oscuro: #8c4023;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fbf6f0;
+  --color-superficie: #ffffff;
+  --color-texto:      #2c211b;
+  --color-texto-suave:#7a675b;
+  --color-borde:      #ece0d4;
+  --tono-sombra:      130 70 40;
+  --intensidad-sombra-base: .11;
+}
+
+[data-tema="minimal"] {
+  --color-primario:   #111111;
+  --color-primario-oscuro: #000000;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #ffffff;
+  --color-superficie: #f6f6f6;
+  --color-texto:      #111111;
+  --color-texto-suave:#6e6e6e;
+  --color-borde:      #e4e4e4;
+  --tono-sombra:      0 0 0;
+  --intensidad-sombra-base: .07;
+}
+
+[data-tema="ocaso"] {
+  --color-primario:   #e2571f;
+  --color-primario-oscuro: #b8420f;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fff5ec;
+  --color-superficie: #ffffff;
+  --color-texto:      #2b1a10;
+  --color-texto-suave:#7d6551;
+  --color-borde:      #f3ddc9;
+  --tono-sombra:      160 80 30;
+  --intensidad-sombra-base: .12;
+}
+
+[data-tema="menta"] {
+  --color-primario:   #0d9488;
+  --color-primario-oscuro: #0a756c;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #f2fbfa;
+  --color-superficie: #ffffff;
+  --color-texto:      #10302e;
+  --color-texto-suave:#5c807d;
+  --color-borde:      #d5ecea;
+  --tono-sombra:      13 110 100;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="cacao"] {
+  --color-primario:   #6f4e37;
+  --color-primario-oscuro: #553a29;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #faf5ef;
+  --color-superficie: #ffffff;
+  --color-texto:      #2a1d15;
+  --color-texto-suave:#7b6858;
+  --color-borde:      #e9dccc;
+  --tono-sombra:      90 60 40;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="rosa"] {
+  --color-primario:   #c9748c;
+  --color-primario-oscuro: #a5566c;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #fdf7f8;
+  --color-superficie: #ffffff;
+  --color-texto:      #331f26;
+  --color-texto-suave:#86666e;
+  --color-borde:      #f2dde3;
+  --tono-sombra:      150 70 95;
+  --intensidad-sombra-base: .10;
+}
+
+[data-tema="arena"] {
+  --color-primario:   #8a7a5c;
+  --color-primario-oscuro: #6b5d44;
+  --texto-boton:      #ffffff;
+  --color-fondo:      #faf8f4;
+  --color-superficie: #ffffff;
+  --color-texto:      #2b2823;
+  --color-texto-suave:#7a746a;
+  --color-borde:      #e7e1d6;
+  --tono-sombra:      80 70 50;
+  --intensidad-sombra-base: .09;
+}
+
+[data-tema="electric"] {
+  --color-primario:   #f5c400;
+  --color-primario-oscuro: #c9a100;
+  --texto-boton:      #111111;
+  --color-fondo:      #fffdf5;
+  --color-superficie: #ffffff;
+  --color-texto:      #17150e;
+  --color-texto-suave:#77705c;
+  --color-borde:      #eee6c8;
+  --tono-sombra:      130 110 20;
+  --intensidad-sombra-base: .12;
+}
+
+
+/* =========================================================
+   INTERRUPTOR 1  ·  data-forma   (las esquinas)
+   -------------------------------------------------------------
+   suave  =  muy redondeado
+   media  =  apenas redondeado
+   recta =  todo en angulo recto
+   ========================================================= */
+[data-forma="suave"]  { --borde-radio: 18px; }
+[data-forma="media"]  { --borde-radio: 8px; }
+[data-forma="recta"]  { --borde-radio: 0px; }
+
+
+/* =========================================================
+   INTERRUPTOR 2  ·  data-sombra   (con sombra o plano)
+   -------------------------------------------------------------
+   Poner "no" deja la pagina limpia y sin relieve. Se ve muy
+   elegante en temas oscuros y muy corporativo en los claros.
+   ========================================================= */
+   data-sombra="si"  es el default, no necesita ninguna regla.
+   data-sombra="no"  apaga las sombras. Esta regla esta al final
+                     del archivo, DESPUES de los 20 temas, asi que
+                     gana siempre. Por eso funciona con cualquier tema.
+
+[data-sombra="no"] { --intensidad-sombra-base: 0; }
+
+
+/* =========================================================
+   INTERRUPTOR 3  ·  data-ancho   (ancho de la pagina)
+   -------------------------------------------------------------
+   estrecho = columna angosta, se lee muy comoda. Para blogs
+               y paginas de mucho texto.
+   normal   = el ancho de siempre. Sirve para casi todo.
+   ancho    = muy ancha. Para catalogo de productos y galerias.
+   ========================================================= */
+[data-ancho="estrecho"] { --ancho-maximo: 900px; }
+[data-ancho="normal"]   { --ancho-maximo: 1180px; }
+[data-ancho="ancho"]    { --ancho-maximo: 1440px; }

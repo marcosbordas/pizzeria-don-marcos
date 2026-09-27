@@ -1,0 +1,848 @@
+/* =========================================================
+   SECCIONES
+   Los bloques grandes de la pagina. 22 en total.
+   =========================================================
+   CADA SECCION TIENE VARIANTES con las clases -a / -b / -c
+   Asi dos paginas hechas con el mismo motor no se ven iguales.
+
+     1.  Portada              A centrado / B con imagen / C foto de fondo / D con captura
+     2.  Confianza            A franja de color / B franja suave / C contadores
+     3.  Servicios            A tarjetas / B lista numerada / C centradas
+     4.  Sobre nosotros       A imagen+texto / B texto primero / C centrado
+     5.  Galeria              A cuadrícula / B mosaico / C tira deslizable
+     6.  Precios              A tabla / B 3 planes / C 2 planes
+     7.  Menu restaurante     A con fotos / B solo texto / C con destacado
+     8.  Catalogo de productos  con carrito a WhatsApp
+     9.  Testimonios          A tarjetas / B cita grande / C marque que corre
+    10.  Como funciona        A 3 pasos / B linea de tiempo
+    11.  Preguntas frecuentes  acordeón (lo abre motor.js)
+    12.  Numeros              contadores animados
+    13.  Contacto             A formulario / B datos / C formulario+WhatsApp
+    14.  Llamado a la accion  A con color / B sutil
+    15.  Mapa                 mapa + horarios
+    16.  Cita destacada
+    17.  Logos de marcas
+    18.  Equipo
+    19.  Video
+    20.  Tabla comparativa
+    21.  Captacion de contactos
+    22.  Carrito flotante
+
+   -----------------------------------------------------
+   COMO BORRAR UNA SECCION
+   En el index.html busca su comentario  <!-- ===== NOMBRE ===== -->
+   y borra todo desde ahi hasta el siguiente comentario igual.
+   Cada seccion esta separada por su propio comentario, asi que
+   es seguro: no se rompe nada.
+   -----------------------------------------------------
+   COMO CAMBIAR EL ORDEN
+   Copia el bloque completo de una seccion y pegalo donde
+   quieras. El orden en que se ven es el orden en el archivo.
+   ========================================================= */
+
+
+/* =========================================================
+   1. PORTADA
+   ========================================================= */
+
+/* --- Variante A: todo centrado --- */
+.portada {
+  position: relative;
+  padding-block: calc(var(--espaciado-enorme) * 1.4) var(--espaciado-enorme);
+  text-align: center;
+}
+.portada .contenedor { display: flex; flex-direction: column; align-items: center; }
+.portada h1 { margin-bottom: 1.1rem; }
+.portada .entradilla { margin-bottom: 2.2rem; }
+
+/* --- Variante B: texto a la izquierda, imagen a la derecha --- */
+.portada-b .contenedor {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--espaciado-grande);
+  align-items: center;
+  text-align: left;
+}
+.portada-b .entradilla { margin-bottom: 2rem; }
+.portada-b .imagen img { border-radius: var(--borde-radio); box-shadow: var(--sombra-grande); }
+
+@media (max-width: 860px) {
+  .portada-b .contenedor { grid-template-columns: 1fr; }
+  .portada-b .imagen { order: -1; }
+}
+
+/* --- Variante C: foto de fondo, texto encima --- */
+.portada-c {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--espaciado-enorme);
+  text-align: center;
+  color: #fff;
+  background-color: var(--color-texto);
+}
+.portada-c .fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+/* El velo oscuro: hace que el texto se lea sobre cualquier foto */
+.portada-c::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.78));
+  z-index: 1;
+}
+.portada-c .contenedor {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.portada-c h1 { color: #fff; }
+.portada-c .entradilla { color: rgba(255,255,255,.9); margin-bottom: 2.2rem; }
+.portada-c .etiqueta { color: #fff; }
+
+/* --- Variante D: portada con captura de correo pegada al boton --- */
+.portada-d { text-align: center; padding-block: var(--espaciado-enorme); }
+.portada-d .contenedor { display: flex; flex-direction: column; align-items: center; }
+.portada-d .captura-directa {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.8rem;
+  width: 100%;
+  max-width: 520px;
+}
+.portada-d .captura-directa input {
+  flex: 1;
+  min-width: 220px;
+  padding: 1rem 1.15rem;
+  font-size: 1rem;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--borde-radio);
+}
+.portada-d .captura-directa input:focus {
+  outline: none;
+  border-color: var(--color-primario);
+}
+.portada-d .bajo-captura {
+  font-size: .82rem;
+  color: var(--color-texto-suave);
+  margin-top: .8rem;
+}
+
+/* Sin foto, solo color de fondo */
+.portada-color { background-color: var(--color-primario); color: var(--texto-boton); }
+.portada-color h1, .portada-color h2 { color: var(--texto-boton); }
+.portada-color .entradilla { color: color-mix(in srgb, var(--texto-boton) 85%, transparent); }
+.portada-color .etiqueta { color: var(--texto-boton); }
+.portada-color .boton { background-color: var(--texto-boton); border-color: var(--texto-boton); color: var(--color-primario); }
+.portada-color .boton:hover { background-color: transparent; color: var(--texto-boton); }
+.portada-color .boton-oscuro { background-color: transparent; border-color: var(--texto-boton); color: var(--texto-boton); }
+
+
+/* =========================================================
+   2. FRANJA DE CONFIANZA
+   ========================================================= */
+.confianza {
+  padding-block: var(--espaciado-grande);
+  background-color: var(--color-primario);
+  color: var(--texto-boton);
+}
+.confianza .rejilla-4 { gap: var(--espaciado-grande); }
+
+.confianza .dato { text-align: center; }
+.confianza .cifra {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: var(--peso-titulo);
+  line-height: 1;
+}
+.confianza .rotulo {
+  font-size: .88rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .88;
+  margin-top: .5rem;
+}
+
+.confianza-suave {
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+}
+.confianza-suave .cifra  { color: var(--color-primario); }
+.confianza-suave .rotulo { color: var(--color-texto-suave); opacity: 1; }
+
+
+/* =========================================================
+   3. SERVICIOS
+   ========================================================= */
+.servicios .cabeza {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--espaciado-grande);
+}
+.servicios .rejilla { margin-top: var(--espaciado-grande); }
+.servicio-a .tarjeta { text-align: left; }
+
+/* --- Variante B: lista numerada --- */
+.servicio-b { display: flex; flex-direction: column; gap: 0; counter-reset: servicio; }
+.servicio-b .servicio {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+}
+.servicio-b .servicio:last-child { border-bottom: none; }
+.servicio-b .servicio::before {
+  counter-increment: servicio;
+  content: counter(servicio, decimal-leading-zero);
+  font-family: var(--fuente-titulo);
+  font-size: 1.6rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-primario);
+  line-height: 1;
+  opacity: .55;
+}
+.servicio-b h3 { margin-bottom: .4rem; }
+.servicio-b p  { color: var(--color-texto-suave); }
+
+/* --- Variante C: centradas, con numero arriba --- */
+.servicio-c { text-align: center; }
+.servicio-c .num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px; height: 46px;
+  margin: 0 auto 1.1rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.15rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+  border-radius: 50%;
+}
+.servicio-c p { color: var(--color-texto-suave); }
+
+
+/* =========================================================
+   4. SOBRE NOSOTROS
+   ========================================================= */
+.sobre .dos-columnas { gap: var(--espaciado-grande); }
+.sobre .texto { display: flex; flex-direction: column; gap: 1.1rem; }
+.sobre .texto p { color: var(--color-texto-suave); }
+
+/* --- Variante C: centrado, foto redonda --- */
+.sobre-c { text-align: center; }
+.sobre-c .contenedor-estrecho { max-width: 720px; }
+.sobre-c .imagen { width: 220px; height: 220px; margin: 0 auto var(--espaciado-medio); }
+.sobre-c .imagen img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--sombra-grande);
+}
+.sobre-c .entradilla { margin-inline: auto; }
+.sobre-c .firma { margin-top: 1rem; }
+
+/* --- Variante B: texto primero, imagen despues.
+       (Es el .invertir de base.css aplicado a dos-columnas) --- */
+
+.firma {
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--color-primario);
+  margin-top: .5rem;
+}
+
+
+/* =========================================================
+   5. GALERIA
+   ========================================================= */
+.galeria { display: grid; gap: var(--espaciado-pequeno); }
+
+.galeria-a { grid-template-columns: repeat(3, 1fr); }
+.galeria-a img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+
+.galeria-b { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; }
+.galeria-b img { width: 100%; height: 100%; object-fit: cover; }
+.galeria-b .grande { grid-column: span 2; grid-row: span 2; }
+
+.galeria-c {
+  display: flex;
+  gap: var(--espaciado-pequeno);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: .5rem;
+  scrollbar-width: thin;
+}
+.galeria-c img {
+  width: 300px; height: 220px;
+  object-fit: cover;
+  border-radius: var(--borde-radio);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.galeria img { border-radius: var(--borde-radio); }
+
+@media (max-width: 700px) {
+  .galeria-a { grid-template-columns: repeat(2, 1fr); }
+  .galeria-b { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
+}
+
+
+/* =========================================================
+   6. PRECIOS
+   ========================================================= */
+
+/* --- Variante A: tabla simple --- */
+.precios-tabla {
+  width: 100%;
+  max-width: 700px;
+  margin-inline: auto;
+  border-collapse: collapse;
+}
+.precios-tabla th,
+.precios-tabla td {
+  padding: 1.15rem 1rem;
+  text-align: left;
+  border-bottom: var(--ancho-borde) solid var(--color-borde);
+}
+.precios-tabla thead th {
+  font-family: var(--fuente-titulo);
+  font-size: 1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+  font-weight: 700;
+}
+.precios-tabla td:last-child { font-weight: 700; text-align: right; }
+.precios-tabla tbody tr:hover { background-color: color-mix(in srgb, var(--color-primario) 6%, transparent); }
+
+/* --- Variantes B y C: planes en columnas --- */
+.planes { display: grid; gap: var(--espaciado-medio); align-items: start; }
+.planes-2 { grid-template-columns: repeat(2, 1fr); max-width: 780px; margin-inline: auto; }
+.planes-3 { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 860px) { .planes-2, .planes-3 { grid-template-columns: 1fr; } }
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 2.2rem 1.8rem;
+  background-color: var(--color-superficie);
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: var(--borde-radio);
+}
+
+.plan.destacado {
+  border: 2px solid var(--color-primario);
+  box-shadow: var(--sombra-grande);
+  transform: scale(1.02);
+}
+
+.plan .cinta {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.plan .nombre-plan {
+  font-family: var(--fuente-titulo);
+  font-size: 1.3rem;
+  font-weight: var(--peso-titulo);
+}
+
+.plan .costo {
+  font-family: var(--fuente-titulo);
+  font-size: 2.6rem;
+  font-weight: var(--peso-titulo);
+  line-height: 1;
+  color: var(--color-primario);
+}
+.plan .costo small { font-size: .95rem; font-weight: 400; color: var(--color-texto-suave); }
+
+.plan .incluye { display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+.plan .incluye li {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  font-size: .93rem;
+  color: var(--color-texto-suave);
+  list-style: none;
+}
+.plan .incluye svg {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  stroke: var(--color-primario);
+  margin-top: .22rem;
+}
+.plan .boton { width: 100%; }
+
+
+/* =========================================================
+   7. MENU DE RESTAURANTE
+   ========================================================= */
+.menu-comida { display: flex; flex-direction: column; gap: var(--espaciado-grande); }
+
+.categoria-menu > h3 {
+  text-align: center;
+  margin-bottom: var(--espaciado-medio);
+  position: relative;
+  padding-bottom: .8rem;
+}
+.categoria-menu > h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 44px; height: 3px;
+  background: var(--color-primario);
+  border-radius: 2px;
+}
+
+.plato {
+  display: grid;
+  grid-template-columns: 105px 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px dashed var(--color-borde);
+}
+.plato:last-child { border-bottom: none; }
+.plato .foto { width: 105px; height: 105px; object-fit: cover; border-radius: var(--borde-radio); }
+.plato .info { display: flex; flex-direction: column; gap: .3rem; }
+.plato .info h4 { font-size: 1.15rem; }
+.plato .info p  { font-size: .9rem; color: var(--color-texto-suave); }
+.plato .precio-plato {
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-primario);
+  white-space: nowrap;
+}
+.plato .marcador-destacado {
+  color: var(--color-primario);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.plato-sin-foto { grid-template-columns: 1fr auto; }
+
+@media (max-width: 620px) {
+  .plato { grid-template-columns: 80px 1fr; gap: 1rem; }
+  .plato .foto { width: 80px; height: 80px; }
+  .plato .precio-plato { grid-column: 2; }
+}
+
+
+/* =========================================================
+   8. CATALOGO DE PRODUCTOS
+   ========================================================= */
+.catalogo { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--espaciado-medio); }
+.catalogo-3 { grid-template-columns: repeat(3, 1fr); }
+.catalogo-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 1000px) { .catalogo { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .catalogo, .catalogo-3, .catalogo-2 { grid-template-columns: 1fr; } }
+
+.carrito {
+  position: fixed;
+  left: 1.25rem; bottom: 1.25rem;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  gap: .8rem;
+  padding: .7rem 1.2rem .7rem .8rem;
+  background-color: var(--color-primario);
+  color: var(--texto-boton);
+  border: none;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sombra-grande);
+}
+.carrito.visible { display: flex; }
+.carrito .cuenta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px; height: 26px;
+  padding-inline: .35rem;
+  background-color: color-mix(in srgb, var(--texto-boton) 22%, transparent);
+  border-radius: 999px;
+  font-size: .85rem;
+}
+
+.brindis {
+  position: fixed;
+  left: 50%; bottom: 2rem;
+  z-index: 300;
+  transform: translateX(-50%);
+  padding: .75rem 1.4rem;
+  background-color: #111;
+  color: #fff;
+  font-size: .92rem;
+  font-weight: 600;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.brindis.visible { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+
+/* =========================================================
+   9. TESTIMONIOS
+   ========================================================= */
+.testimonio { display: flex; flex-direction: column; gap: 1rem; }
+.testimonio .estrellas { color: #e8b31f; font-size: .95rem; letter-spacing: .1em; }
+.testimonio .cita { font-size: 1.05rem; line-height: 1.65; }
+.testimonio .quien { display: flex; align-items: center; gap: .8rem; margin-top: auto; padding-top: .6rem; }
+.testimonio .quien img { width: 46px; height: 46px; object-fit: cover; border-radius: 50%; }
+.testimonio .quien strong { display: block; font-size: .95rem; }
+.testimonio .quien span   { display: block; font-size: .84rem; color: var(--color-texto-suave); }
+
+.cita-grande { text-align: center; max-width: 820px; margin-inline: auto; }
+.cita-grande blockquote {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+.cita-grande .quien { justify-content: center; }
+
+.marque {
+  overflow: hidden;
+  padding-block: var(--espaciado-medio);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marque-pista {
+  display: flex;
+  gap: var(--espaciado-medio);
+  width: max-content;
+  animation: correr 32s linear infinite;
+}
+.marque-pista:hover { animation-play-state: paused; }
+.marque .testimonio { width: 380px; flex-shrink: 0; }
+
+@keyframes correr {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* =========================================================
+   10. COMO FUNCIONA
+   ========================================================= */
+.pasos { display: grid; gap: var(--espaciado-grande); counter-reset: paso; }
+.pasos-3 { grid-template-columns: repeat(3, 1fr); }
+.pasos-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 860px) { .pasos-3, .pasos-4 { grid-template-columns: 1fr; } }
+
+.paso { position: relative; text-align: center; padding-inline: .5rem; }
+.paso .numero {
+  counter-increment: paso;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px; height: 58px;
+  margin: 0 auto 1.1rem;
+  font-family: var(--fuente-titulo);
+  font-size: 1.5rem;
+  font-weight: var(--peso-titulo);
+  color: var(--texto-boton);
+  background-color: var(--color-primario);
+  border-radius: 50%;
+}
+.paso .numero::before { content: counter(paso); }
+.paso h4 { margin-bottom: .45rem; }
+.paso p  { font-size: .94rem; color: var(--color-texto-suave); }
+
+.linea-tiempo { display: grid; gap: var(--espaciado-grande); counter-reset: paso; }
+.linea-tiempo .paso {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 1.5rem;
+  text-align: left;
+  align-items: start;
+  padding-bottom: var(--espaciado-grande);
+}
+.linea-tiempo .paso::before {
+  content: "";
+  position: absolute;
+  left: 28px; top: 68px; bottom: 0;
+  width: 2px;
+  background-color: var(--color-borde);
+}
+.linea-tiempo .paso:last-child::before { display: none; }
+.linea-tiempo .paso .numero { margin: 0; }
+
+
+/* =========================================================
+   11. PREGUNTAS FRECUENTES
+   El abrir y cerrar lo hace motor.js con la clase .abierta
+   ========================================================= */
+.faq { display: flex; flex-direction: column; gap: .8rem; max-width: 780px; margin-inline: auto; }
+
+.pregunta {
+  background-color: var(--color-superficie);
+  border: var(--ancho-borde) solid var(--color-borde);
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  transition: border-color var(--transicion);
+}
+.pregunta.abierta { border-color: var(--color-primario); }
+
+.pregunta button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem 1.4rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--fuente-titulo);
+  font-size: 1.08rem;
+  font-weight: var(--peso-titulo);
+  color: var(--color-texto);
+}
+
+.pregunta .signo {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-primario);
+  transition: transform var(--transicion);
+}
+.pregunta.abierta .signo { transform: rotate(45deg); }
+
+.pregunta .respuesta {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.pregunta.abierta .respuesta { grid-template-rows: 1fr; }
+.pregunta .respuesta > div { overflow: hidden; }
+.pregunta .respuesta p { padding: 0 1.4rem 1.35rem; color: var(--color-texto-suave); }
+
+
+/* =========================================================
+   12. CONTADORES DE NUMEROS
+   Las cifras suben solas. Lo hace motor.js con data-hasta
+   ========================================================= */
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaciado-grande);
+  text-align: center;
+}
+.numeros .cifra {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: var(--peso-titulo);
+  line-height: 1;
+  color: var(--color-primario);
+}
+.numeros .rotulo { font-size: .9rem; color: var(--color-texto-suave); margin-top: .5rem; }
+
+@media (max-width: 700px) { .numeros { grid-template-columns: repeat(2, 1fr); gap: var(--espaciado-medio); } }
+
+
+/* =========================================================
+   13. CONTACTO
+   ========================================================= */
+.contacto .dos-columnas { align-items: start; }
+
+.info-contacto { display: flex; flex-direction: column; gap: 1.4rem; }
+.info-contacto .fila { display: flex; align-items: flex-start; gap: 1rem; }
+.info-contacto .fila .dato-texto { display: flex; flex-direction: column; gap: .2rem; }
+.info-contacto .fila strong { font-size: .95rem; }
+.info-contacto .fila a,
+.info-contacto .fila span { font-size: .95rem; color: var(--color-texto-suave); text-decoration: none; }
+.info-contacto .fila a:hover { color: var(--color-primario); }
+
+
+/* =========================================================
+   14. LLAMADO A LA ACCION
+   ========================================================= */
+.llamado {
+  position: relative;
+  padding-block: var(--espaciado-enorme);
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-primario) 92%, #000 0%),
+    color-mix(in srgb, var(--color-primario-oscuro) 88%, #000 0%));
+}
+.llamado h2 { color: #fff; }
+.llamado .entradilla { color: rgba(255,255,255,.9); margin: 0 auto 2.2rem; }
+.llamado .boton { border-color: #fff; background-color: #fff; color: var(--color-primario); }
+.llamado .boton:hover { background-color: transparent; color: #fff; }
+.llamado .boton-claro { background-color: transparent; color: #fff; }
+.llamado .boton-claro:hover { background-color: #fff; color: var(--color-primario); }
+
+.llamado-sutilo { background-color: var(--color-superficie); color: var(--color-texto); }
+.llamado-sutilo h2 { color: var(--color-texto); }
+.llamado-sutilo .entradilla { color: var(--color-texto-suave); }
+.llamado-sutilo .boton { color: #fff; }
+.llamado-sutilo .boton-claro { color: var(--color-primario); border-color: var(--color-primario); }
+.llamado-sutilo .boton-claro:hover { background-color: var(--color-primario); color: #fff; }
+
+
+/* =========================================================
+   15. MAPA
+   ========================================================= */
+.mapa {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: none;
+  border-radius: var(--borde-radio);
+  filter: grayscale(1) contrast(1.05);
+  transition: filter var(--transicion);
+}
+.mapa:hover { filter: none; }
+
+
+/* =========================================================
+   16. CITA DESTACADA
+   Un texto muy breve para poner entre secciones.
+   ========================================================= */
+.cita-bloque {
+  text-align: center;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-block: var(--espaciado-grande);
+}
+.cita-bloque blockquote {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: 1.45;
+  font-style: italic;
+}
+.cita-bloque cite {
+  display: block;
+  margin-top: 1.1rem;
+  font-size: .9rem;
+  font-style: normal;
+  color: var(--color-texto-suave);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   17. LOGOS DE MARCAS
+   -----------------------------------------------------
+     <div class="logos">
+       <img src="logo1.svg" alt="Marca 1">
+     </div>
+   ========================================================= */
+.logos-cabecera {
+  text-align: center;
+  margin-bottom: var(--espaciado-grande);
+}
+.logos-cabecera p {
+  font-size: .85rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+  margin-bottom: 1.5rem;
+}
+
+
+/* =========================================================
+   18. EQUIPO
+   -----------------------------------------------------
+     <div class="equipo">
+       <article class="persona">
+         <img src="foto.jpg" alt="">
+         <h4>Nombre</h4>
+         <span class="cargo">Cargo</span>
+         <p>Dos lineas.</p>
+       </article>
+     </div>
+   ========================================================= */
+.equipo-cabecera { text-align: center; max-width: 640px; margin: 0 auto var(--espaciado-grande); }
+
+
+/* =========================================================
+   19. VIDEO
+   ---------------------------------------------------------
+     <div class="marco-video">
+       <iframe src="https://www.youtube.com/embed/ID"
+               title="Video" allowfullscreen></iframe>
+     </div>
+   ========================================================= */
+.marco-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+  box-shadow: var(--sombra-grande);
+  background-color: var(--color-texto);
+}
+.marco-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* Con el video pegado a un lado del texto */
+.video-lado { display: grid; grid-template-columns: 1fr 1fr; gap: var(--espaciado-grande); align-items: center; }
+@media (max-width: 860px) { .video-lado { grid-template-columns: 1fr; } }
+
+
+/* =========================================================
+   20. TABLA COMPARATIVA
+   ---------------------------------------------------------
+     <table class="comparativa">
+       <thead><tr><th></th><th>Basico</th><th>Completo</th></tr></thead>
+       <tbody>
+         <tr><td>Pagina propia</td><td>...</td><td>...</td></tr>
+       </tbody>
+     </table>
+
+   Los checks y las equis se ponen con svg, no con palabras,
+   porque se ven mejor y ocupan menos.
+   ========================================================= */
+.comparativa-cabecera { text-align: center; max-width: 640px; margin: 0 auto var(--espaciado-grande); }
+
+
+/* =========================================================
+   21. CAPTACION DE CONTACTOS
+   ---------------------------------------------------------
+     <div class="captura">
+       <h3>Title</h3>
+       <p>Subtitulo</p>
+       <form class="formulario formulario-linea">...</form>
+       <small class="nota">Sin spam.</small>
+     </div>
+   ========================================================= */
+.captura-cabecera { text-align: center; max-width: 620px; margin: 0 auto var(--espaciado-grande); }
