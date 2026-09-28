@@ -517,7 +517,8 @@ var ATRIBUTOS_TRADUCIBLES = {
   'aria-label':    'data-en-aria',
   'alt':           'data-en-alt',
   'title':         'data-en-title',
-  'data-etiqueta': 'data-en-etiqueta'
+  'data-etiqueta': 'data-en-etiqueta',
+  'data-producto': 'data-en-producto'
 };
 
 /* El <title> del navegador y la <meta description> no son texto visible,
@@ -558,19 +559,29 @@ function aplicarIdioma(lang) {
   var grupo = TEXTOS_MOTOR[lang] || TEXTOS_MOTOR[IDIOMA_POR_DEFECTO];
   TEXTO_PEDIDO = grupo.pedido;
 
-  document.querySelectorAll('[data-en]').forEach(function (el) {
+  /* Un solo recorrido para las dos cosas. Se juntan los elementos que traducen
+     texto (data-en) con los que solo traducen atributos: un <iframe> que solo
+     tiene data-en-title, por ejemplo, no puede llevar data-en porque ahi no hay
+     texto que cambiar. */
+  var selAtributos = [];
+  for (var clave in ATRIBUTOS_TRADUCIBLES) {
+    selAtributos.push('[' + ATRIBUTOS_TRADUCIBLES[clave] + ']');
+  }
+
+  document.querySelectorAll('[data-en], ' + selAtributos.join(', ')).forEach(function (el) {
     if (el.closest('[data-sin-traducir]')) { return; }
 
-    if (el.getAttribute('data-es') === null) {
-      var actual = '';
-      for (var i = 0; i < el.childNodes.length; i++) {
-        if (el.childNodes[i].nodeType === 3) { actual += el.childNodes[i].nodeValue; }
+    if (el.hasAttribute('data-en')) {
+      if (el.getAttribute('data-es') === null) {
+        var actual = '';
+        for (var i = 0; i < el.childNodes.length; i++) {
+          if (el.childNodes[i].nodeType === 3) { actual += el.childNodes[i].nodeValue; }
+        }
+        el.setAttribute('data-es', actual.trim());
       }
-      el.setAttribute('data-es', actual.trim());
+      var texto = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
+      if (texto) { fijarTexto(el, texto); }
     }
-
-    var texto = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
-    if (texto) { fijarTexto(el, texto); }
 
     for (var attr in ATRIBUTOS_TRADUCIBLES) {
       var valor = el.getAttribute(ATRIBUTOS_TRADUCIBLES[attr]);
