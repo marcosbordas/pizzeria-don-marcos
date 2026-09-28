@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
   carritoWhatsApp();
   anioActual();
   barraAnuncio();
+  selectorIdioma();
 });
 
 
@@ -229,7 +230,7 @@ function formularios() {
       var destino = formulario.getAttribute('data-correo');
       if (!destino) { return; }
 
-      var asunto = formulario.getAttribute('data-asunto') || 'Mensaje desde la pagina web';
+      var asunto = formulario.getAttribute('data-asunto') || T('Mensaje desde la pagina web');
 
       var cuerpo = '';
       var faltan = [];
@@ -249,20 +250,20 @@ function formularios() {
 
       if (faltan.length) {
         if (aviso) {
-          aviso.textContent = 'Falta completar: ' + faltan.join(', ') + '.';
+          aviso.textContent = T('Falta completar: ') + faltan.join(', ') + '.';
           aviso.classList.add('visible');
         }
         return;
       }
 
-      cuerpo += '\n---\nEnviado desde: ' + window.location.href;
+      cuerpo += '\n---\n' + T('Enviado desde: ') + window.location.href;
 
       var enlace = 'mailto:' + destino +
                    '?subject=' + encodeURIComponent(asunto) +
                    '&body=' + encodeURIComponent(cuerpo);
 
       if (aviso) {
-        aviso.textContent = 'Te abrimos tu programa de correo con el mensaje escrito. Solo falta darle enviar.';
+        aviso.textContent = T('Te abrimos tu programa de correo con el mensaje escrito. Solo falta darle enviar.');
         aviso.classList.add('visible');
         setTimeout(function () { aviso.classList.remove('visible'); }, 12000);
       }
@@ -307,7 +308,7 @@ function carritoWhatsApp() {
 
   document.querySelectorAll('.agregar').forEach(function (boton) {
     boton.addEventListener('click', function () {
-      var nombre = boton.getAttribute('data-producto') || 'Producto';
+      var nombre = boton.getAttribute('data-producto') || T('Producto');
       var precio = boton.getAttribute('data-precio') || '0';
 
       var existente = pedido.find(function (p) { return p.nombre === nombre; });
@@ -318,7 +319,7 @@ function carritoWhatsApp() {
       }
 
       actualizar();
-      mostrarBrindis('Agregado: ' + nombre);
+      mostrarBrindis(T('Agregado: ') + nombre);
     });
   });
 
@@ -341,7 +342,7 @@ function carritoWhatsApp() {
       texto += '- ' + p.nombre + ' x' + p.cantidad + ' : ' + importe.toFixed(2) + '\n';
     });
 
-    texto += '\nTotal: ' + total.toFixed(2);
+      texto += '\n' + T('Total:') + ' ' + total.toFixed(2);
 
     window.open('https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(texto), '_blank');
   });
@@ -385,6 +386,243 @@ function barraAnuncio() {
   });
 }
 
+
+/* =========================================================
+   10. IDIOMA ES / EN
+   ---------------------------------------------------------
+   Como funciona, para que quede claro y no haya que explicar:
+
+   1) El HTML se escribe en ESPANOL. Ese es el texto de respaldo:
+      si el visitante tiene el javascript apagado, ve todo en
+      espanol y la pagina se lee completa. Nunca se borra el
+      espanol del HTML.
+
+   2) Para traducir un elemento se le pone data-en="..." :
+
+        <h2 data-en="About me">Sobre mi</h2>
+
+   3) Al cambiar a ingles, ese <h2> pasa a decir "About me".
+      Al volver a espanol, vuelve a decir "Sobre mi".
+      El espanol se guarda solo en data-es la primera vez.
+
+   ---------------------------------------------------------
+   ATRIBUTOS QUE TAMBIEN SE TRADUCEN:
+
+        data-en-placeholder   (placeholder de input y textarea)
+        data-en-aria          (aria-label de los botones)
+        data-en-alt           (alt de las imagenes)
+        data-en-title         (title)
+        data-en-etiqueta      (data-etiqueta, para el boton del formulario)
+
+   ---------------------------------------------------------
+   LO QUE NO ES TEXTO VISIBLE (el titulo y la descripcion)
+   ---------------------------------------------------------
+
+        data-en-titulo        (el <title> del navegador)
+        data-en-descripcion   (la <meta name="description">)
+
+   Esos dos van en el <html>, no en un elemento:
+
+        <html lang="es"
+              data-en-titulo="Web design for small businesses"
+              data-en-descripcion="I build websites for...">
+
+   ---------------------------------------------------------
+   NODOS QUE EL MOTOR NO TOCA (los escribe el propio motor):
+
+        [data-hasta]   contadores que suben solos
+        [data-anio]    anio del pie de pagina
+        [data-cuenta]  numerito del carrito
+
+   Para dejar algo siempre en espanol:
+
+        data-sin-traducir
+
+   ---------------------------------------------------------
+   EL BOTON ES | EN
+
+   Se dibuja solo, no hay que escribirlo en el HTML. Se coloca
+   dentro de .menu-interior si existe, si no dentro de .menu, y
+   si no al principio del <body>.
+
+   ---------------------------------------------------------
+   TRADUCIR TEXTO QUE MARCA EL PROPIO MOTOR (carrito, avisos):
+
+        TEXTO_PEDIDO = T('Hola! Quiero hacer este pedido:');
+
+   ========================================================= */
+var IDIOMA_POR_DEFECTO = 'es';
+var CLAVE_IDIOMA      = 'mb-lang';
+
+/* Los textos que escribe el motor, en los dos idiomas. */
+var TEXTOS_MOTOR = {
+  es: {
+    pedido:   'Hola! Quiero hacer este pedido:',
+    total:    'Total:',
+    agregado: 'Agregado: ',
+    producto: 'Producto',
+    faltan:  'Falta completar: ',
+    enviado:  'Te abrimos tu programa de correo con el mensaje escrito. Solo falta darle enviar.',
+    asunto:   'Mensaje desde la pagina web',
+    origen:   'Enviado desde: '
+  },
+  en: {
+    pedido:   'Hello! I would like to place this order:',
+    total:    'Total:',
+    agregado: 'Added: ',
+    producto: 'Product',
+    faltan:  'Please fill in: ',
+    enviado:  'We opened your email app with the message ready. Just hit send.',
+    asunto:   'Message from the website',
+    origen:   'Sent from: '
+  }
+};
+
+function idiomaActual() {
+  try { return localStorage.getItem(CLAVE_IDIOMA) || IDIOMA_POR_DEFECTO; }
+  catch (e) { return IDIOMA_POR_DEFECTO; }
+}
+
+function guardarIdioma(lang) {
+  try { localStorage.setItem(CLAVE_IDIOMA, lang); } catch (e) { }
+}
+
+/* Traduce una cadena que escribe el motor. */
+function T(texto) {
+  var lang = idiomaActual();
+  var grupo = TEXTOS_MOTOR[lang] || TEXTOS_MOTOR[IDIOMA_POR_DEFECTO];
+  for (var clave in grupo) {
+    if (grupo[clave] === texto) { return grupo[clave]; }
+  }
+  return texto;
+}
+
+/* Escribe en el PRIMER nodo de texto directo del elemento.
+   Asi no se borran los hijos, por ejemplo el <span class="signo">+</span>
+   que esta dentro de los botones de preguntas frecuentes. */
+function fijarTexto(el, texto) {
+  for (var i = 0; i < el.childNodes.length; i++) {
+    if (el.childNodes[i].nodeType === 3) {
+      el.childNodes[i].nodeValue = texto;
+      return;
+    }
+  }
+  el.insertBefore(document.createTextNode(texto), el.firstChild);
+}
+
+/* Atributo real  ->  atributo donde va la traduccion.
+   Para inventar uno nuevo solo se agrega una linea aqui. */
+var ATRIBUTOS_TRADUCIBLES = {
+  'placeholder':   'data-en-placeholder',
+  'aria-label':    'data-en-aria',
+  'alt':           'data-en-alt',
+  'title':         'data-en-title',
+  'data-etiqueta': 'data-en-etiqueta'
+};
+
+/* El <title> del navegador y la <meta description> no son texto visible,
+   asi que no los agarra el ciclo de [data-en]. Se cambian aqui.
+   Las traducciones van puestas en el <html>:
+
+     <html lang="es" data-en-titulo="..." data-en-descripcion="...">
+
+   El espanol se guarda solo la primera vez, igual que data-en. */
+function traducirMeta(lang) {
+  var raiz = document.documentElement;
+
+  if (raiz.getAttribute('data-es-titulo') === null) {
+    raiz.setAttribute('data-es-titulo', document.title);
+  }
+  var titulo = raiz.getAttribute(lang === 'en' ? 'data-en-titulo' : 'data-es-titulo');
+  if (titulo) { document.title = titulo; }
+
+  var meta = document.querySelector('meta[name="description"]');
+  if (!meta) { return; }
+  if (raiz.getAttribute('data-es-descripcion') === null) {
+    raiz.setAttribute('data-es-descripcion', meta.getAttribute('content') || '');
+  }
+  var desc = raiz.getAttribute(lang === 'en' ? 'data-en-descripcion' : 'data-es-descripcion');
+  if (desc) { meta.setAttribute('content', desc); }
+}
+
+function selectorIdioma() {
+  document.documentElement.setAttribute('data-idioma', idiomaActual());
+  aplicarIdioma(idiomaActual());
+  dibujarSelector();
+}
+
+function aplicarIdioma(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('data-idioma', lang);
+
+  var grupo = TEXTOS_MOTOR[lang] || TEXTOS_MOTOR[IDIOMA_POR_DEFECTO];
+  TEXTO_PEDIDO = grupo.pedido;
+
+  document.querySelectorAll('[data-en]').forEach(function (el) {
+    if (el.closest('[data-sin-traducir]')) { return; }
+
+    if (el.getAttribute('data-es') === null) {
+      var actual = '';
+      for (var i = 0; i < el.childNodes.length; i++) {
+        if (el.childNodes[i].nodeType === 3) { actual += el.childNodes[i].nodeValue; }
+      }
+      el.setAttribute('data-es', actual.trim());
+    }
+
+    var texto = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
+    if (texto) { fijarTexto(el, texto); }
+
+    for (var attr in ATRIBUTOS_TRADUCIBLES) {
+      var valor = el.getAttribute(ATRIBUTOS_TRADUCIBLES[attr]);
+      if (!valor) { continue; }
+      if (lang === 'en') {
+        el.setAttribute('data-es-' + attr, el.getAttribute(attr) || '');
+        el.setAttribute(attr, valor);
+      } else {
+        var vuelta = el.getAttribute('data-es-' + attr);
+        if (vuelta !== null && vuelta !== '') { el.setAttribute(attr, vuelta); }
+      }
+    }
+  });
+
+  traducirMeta(lang);
+}
+
+function dibujarSelector() {
+  if (document.querySelector('.selector-idioma')) { return; }
+
+  var caja = document.createElement('div');
+  caja.className = 'selector-idioma';
+  caja.setAttribute('role', 'group');
+  caja.innerHTML =
+    '<button type="button" data-idioma-btn="es">ES</button>' +
+    '<button type="button" data-idioma-btn="en">EN</button>';
+
+  var destino = document.querySelector('.menu-interior') ||
+                document.querySelector('.menu') ||
+                document.body;
+  destino.appendChild(caja);
+
+  function marcar() {
+    var lang = idiomaActual();
+    caja.querySelectorAll('[data-idioma-btn]').forEach(function (b) {
+      var activo = b.getAttribute('data-idioma-btn') === lang;
+      b.classList.toggle('activo', activo);
+      b.setAttribute('aria-pressed', activo ? 'true' : 'false');
+    });
+  }
+
+  caja.querySelectorAll('[data-idioma-btn]').forEach(function (boto) {
+    boto.addEventListener('click', function () {
+      var lang = boto.getAttribute('data-idioma-btn');
+      guardarIdioma(lang);
+      aplicarIdioma(lang);
+      marcar();
+    });
+  });
+
+  marcar();
+}
 
 /* =========================================================
    =========================================================
