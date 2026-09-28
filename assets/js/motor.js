@@ -607,8 +607,8 @@ function dibujarSelector() {
   caja.className = 'selector-idioma';
   caja.setAttribute('role', 'group');
   caja.innerHTML =
-    '<button type="button" data-idioma-btn="es">ES</button>' +
-    '<button type="button" data-idioma-btn="en">EN</button>';
+    '<button type="button" data-idioma-btn="es" data-etiqueta="Cambiar a español" data-en-etiqueta="Switch to Spanish">ESP</button>' +
+    '<button type="button" data-idioma-btn="en" data-etiqueta="Cambiar a inglés" data-en-etiqueta="Switch to English">ENG</button>';
 
   var destino = document.querySelector('.menu-interior') ||
                 document.querySelector('.menu') ||
