@@ -518,7 +518,8 @@ var ATRIBUTOS_TRADUCIBLES = {
   'alt':           'data-en-alt',
   'title':         'data-en-title',
   'data-etiqueta': 'data-en-etiqueta',
-  'data-producto': 'data-en-producto'
+  'data-producto': 'data-en-producto',
+  'data-asunto':   'data-en-asunto'
 };
 
 /* El <title> del navegador y la <meta description> no son texto visible,
